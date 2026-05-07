@@ -42,6 +42,7 @@ void GammaCorrection::process(const Image &src, Image &dst) {
     }
 }
 
+//because we don't know the size of the kernel at initialization we need to use dynamic allocation
 Convolution::Convolution(double **kernel, unsigned int kernelWidth, unsigned int kernelHeight,
     double(*scaleFunc)(double)): kernelWidth(kernelWidth), kernelHeight(kernelHeight), scaleFunc(scaleFunc) {
     //memory allocation for the kernel matrix
@@ -96,6 +97,7 @@ Convolution & Convolution::operator=(const Convolution &other) {
 void Convolution::process(const Image &src, Image &dst) {
     dst = Image(src.width(), src.height());
     // k = how many neighbors one has in a given direction
+    // compute the distance from the center of the kernel until its end
     int k = kernelWidth / 2;
     for (unsigned int y = 0; y < src.height(); ++y) {
         for (unsigned int x = 0; x < src.width(); ++x) {
@@ -118,11 +120,13 @@ void Convolution::process(const Image &src, Image &dst) {
         }
     }
 }
-
+// just multiply the convolution result to 1/9
 double Convolution::meanScale(double val) { return val * (1.0 / 9.0); }
 
+//just multiply the convolution result to 1/16.0
 double Convolution::gaussianScale(double val) { return val * (1.0 / 16.0); }
 
+// a linear mapping function that converts the range [-4*255, 4*255] to the range [0, 255].
 double Convolution::sobelScale(double val) { return (val + 4 * 255) / (8.0 * 255) * 255.0; }
 
 

@@ -31,8 +31,10 @@ Rectangle Rectangle::operator-(const Point &point) const {
 }
 
 Rectangle Rectangle::operator&(const Rectangle &other) const {
+    //maximum coordinates for upper left
     int newX = x > other.x ? x : other.x;
     int newY = y > other.y ? y : other.y;
+    //minimum coordinates for bottom right
     int newRight = (x + width) < (other.x + other.width) ? (x + width) : (other.x + other.width);
     int newBottom = (y + height) < (other.y + other.height) ? (y + height) : (other.y + other.height);
 
@@ -42,8 +44,10 @@ Rectangle Rectangle::operator&(const Rectangle &other) const {
 }
 
 Rectangle Rectangle::operator|(const Rectangle &other) const {
+    //minimum coordinates upper left
     int newX = x < other.x ? x : other.x;
     int newY = y < other.y ? y : other.y;
+    //maximum coordinates bottom right
     int newRight = (x + width) > (other.x + other.width) ? (x + width) : (other.x + other.width);
     int newBottom = (y + height) > (other.y + other.height) ? (y + height) : (other.y + other.height);
 

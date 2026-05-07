@@ -107,7 +107,7 @@ bool Image::getROI(Image &roiImg, unsigned int x, unsigned int y, unsigned int w
     for (unsigned int i = 0; i < height; i++) {
         roiImg.m_data[i] = new unsigned char[width];
         for (unsigned int j = 0; j < width; j++)
-            roiImg.m_data[i][j] = m_data[y + i][x + j]; // copiem pixelii din zona specificata
+            roiImg.m_data[i][j] = m_data[y + i][x + j]; // copy the pixels from that area
     }
     return true;
 }
@@ -130,6 +130,7 @@ unsigned int Image::width() const { return m_width; }
 
 unsigned int Image::height() const { return m_height; }
 
+//working with coordinates
 unsigned char & Image::at(unsigned int x, unsigned int y) {
     return m_data[y][x];
 }
@@ -138,11 +139,13 @@ unsigned char Image::at(unsigned int x, unsigned int y) const {
     return m_data[y][x];
 }
 
-
+//working with point objects
+//return by reference, non-const => used when ones needs to modify
 unsigned char & Image::at(Point pt) {
     return m_data[pt.getY()][pt.getX()];
 }
 
+//return by value, const => used when ones does not have to modify
 unsigned char Image::at(Point pt) const {
     return m_data[pt.getY()][pt.getX()];
 }
