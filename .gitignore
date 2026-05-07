@@ -1,0 +1,8 @@
+*.o
+*.out
+*.exe
+.vscode/
+cmake-build-*/
+
+docs/html/
+docs/latex/
