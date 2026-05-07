@@ -94,6 +94,7 @@ Image Image::operator*(double s) {
 }
 
 bool Image::getROI(Image &roiImg, Rectangle roiRect) {
+    if (roiRect.getX() < 0 || roiRect.getY() < 0) {return false; }
     return getROI(roiImg, (unsigned int)roiRect.getX(), (unsigned int)roiRect.getY(), roiRect.getWidth(), roiRect.getHeight());
 }
 

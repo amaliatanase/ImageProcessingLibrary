@@ -72,7 +72,7 @@ int main() {
 
     //extract a ROI from the original picture
     Image roi;
-    Rectangle roiRect(50, 30, 80, 100);
+    Rectangle roiRect(-50, 30, 100, 100);
     img.getROI(roi, roiRect);
     roi.save("/Users/amaliatanase/CLionProjects/ImageProcessing/roi.pgm");
 
@@ -80,6 +80,17 @@ int main() {
     Drawing::drawRectangle(img, roiRect, 255);
     Drawing::drawCircle(img, Point(90, 80), 10, 0);
     img.save("/Users/amaliatanase/CLionProjects/ImageProcessing/drawing.pgm");
+
+    Image img2;
+    if (!img2.load("/Users/amaliatanase/CLionProjects/ImageProcessing/venus1.ascii.pgm")) {
+        std::cout << "Failed to load image!" << std::endl;
+        return -1;
+    }
+
+    Image dst7;
+    BrightnessContrastAdjustment bca2(1.5, 30);
+    bca2.process(img2, dst7);
+    dst7.save("/Users/amaliatanase/CLionProjects/ImageProcessing/brightness_venus.pgm");
 
     std::cout << "Done! All images saved." << std::endl;
 

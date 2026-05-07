@@ -108,7 +108,7 @@ void Convolution::process(const Image &src, Image &dst) {
                     //compute the coordinates of the neighbors
                     int srcX = (int)x - (int)u + k;
                     int srcY = (int)y - (int)v + k;
-                    //verify that the neighbors is in the matrix
+                    //verify that the neighbors are in the matrix
                     if (srcX >= 0 && srcX < (int)src.width() && srcY >= 0 && srcY < (int)src.height())
                         sum += kernel[v][u] * src.at(srcX, srcY);
                 }
@@ -123,9 +123,11 @@ void Convolution::process(const Image &src, Image &dst) {
 // just multiply the convolution result to 1/9
 double Convolution::meanScale(double val) { return val * (1.0 / 9.0); }
 
+//still a blurring kernel, but the central pixel of the kernel has a higher weight in the mean operation
 //just multiply the convolution result to 1/16.0
 double Convolution::gaussianScale(double val) { return val * (1.0 / 16.0); }
 
+//detect horizontal edges
 // a linear mapping function that converts the range [-4*255, 4*255] to the range [0, 255].
 double Convolution::sobelScale(double val) { return (val + 4 * 255) / (8.0 * 255) * 255.0; }
 
