@@ -5,7 +5,7 @@ A C++ library for basic image processing and geometric shape rendering.
 ## 📚 Documentation
 You can find the full API documentation, generated with Doxygen, at the link below:
 
-👉 **[View Online Documentation](https://<username>.github.io/<nume-proiect>/html/index.html)**
+👉 **[View Online Documentation](https://amaliatanase.github.io/ImageProcessingLibrary/html/index.html)**
 
 ---
 
