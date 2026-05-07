@@ -4,5 +4,4 @@
 .vscode/
 cmake-build-*/
 
-docs/html/
 docs/latex/
